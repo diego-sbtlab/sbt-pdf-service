@@ -21,7 +21,6 @@ pipelines:
             - echo Dependencies installed successfully
           artifacts:
             - ./**
-            - outputs
       - step:
           name: Deploy
           image: node:14-alpine
@@ -31,7 +30,7 @@ pipelines:
             - echo Deploy the APIs
             - sls deploy -v -s dev
           artifacts:
-            - outputs
+            - ./**
     master:
       - step:
           name: Install
