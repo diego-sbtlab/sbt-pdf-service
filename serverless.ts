@@ -2,6 +2,7 @@ import type { AWS } from '@serverless/typescript';
 
 import cachetReport from '@functions/cachetReport';
 import prizeReceipt from "@functions/prizeReceipt";
+import adsPlanDetail from "@functions/adsPlanDetail";
 
 const serverlessConfiguration: AWS = {
   service: 'sbt-caravanas-service-file',
@@ -28,6 +29,7 @@ const serverlessConfiguration: AWS = {
   functions: {
     cachetReport,
     prizeReceipt,
+    adsPlanDetail
   },
 };
 
