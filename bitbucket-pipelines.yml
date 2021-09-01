@@ -1,0 +1,55 @@
+image: atlassian/default-image:2
+
+options:
+  max-time: 30
+
+definitions:
+  caches:
+    npm: $HOME/.npm
+
+pipelines:
+  branches:
+    dev:
+      - step:
+          name: Install
+          image: node:14-alpine
+          caches:
+            - npm
+          script:
+            - echo Installing NPM dependencies
+            - npm install
+            - echo Dependencies installed successfully
+          artifacts:
+            - ./**
+            - outputs
+      - step:
+          name: Deploy
+          image: node:14-alpine
+          script:
+            - echo Installing Serverless Framework
+            - npm install -g serverless
+            - echo Deploy the APIs
+            - sls deploy -v -s dev
+          artifacts:
+            - outputs
+    master:
+      - step:
+          name: Install
+          image: node:14-alpine
+          caches:
+            - npm
+          script:
+            - echo Installing NPM dependencies
+            - npm install
+            - echo Dependencies installed successfully
+          artifacts:
+            - ./**
+      - step:
+          name: Deploy
+          image: node:14-alpine
+          trigger: manual
+          script:
+            - echo Installing Serverless Framework
+            - npm install -g serverless
+            - echo Deploy the APIs
+            - sls deploy -v -s prod

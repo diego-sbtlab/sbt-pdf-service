@@ -36,8 +36,9 @@ const render = async (html, memStream) => {
 
 };
 
-const cachetReport: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+const planDetail: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
   const { body } = event;
+  console.log('AQUI', body);
   const accountability = body;
 
   // Estas duas configurações abaixo faz o lambda enxergar a path dos binários
@@ -65,4 +66,4 @@ const cachetReport: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (e
   })
 }
 
-export const main = middyfy(cachetReport);
+export const main = middyfy(planDetail);
