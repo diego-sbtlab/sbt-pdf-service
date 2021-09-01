@@ -25,9 +25,9 @@ pipelines:
           name: Deploy
           image: node:14-alpine
           script:
+            - npm install
             - echo Installing Serverless Framework
             - npm install -g serverless
-            - npm list ts-node
             - echo Deploy the APIs
             - sls deploy -v -s dev
           artifacts:
@@ -49,6 +49,7 @@ pipelines:
           image: node:14-alpine
           trigger: manual
           script:
+            - npm install
             - echo Installing Serverless Framework
             - npm install -g serverless
             - echo Deploy the APIs
