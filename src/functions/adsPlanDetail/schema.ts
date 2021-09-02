@@ -68,7 +68,7 @@ export default {
         coverUrl: { type: "string" },
         classification: { type: "string" },
         category: { type: "string" },
-        exhibition: { type: "array", items: {type: "string"}},
+        exhibition: { type: ["array", "null"], items: {type: "string"}},
         impact: { type: "number" },
         totalImpact: { type: "number" },
         total: { type: "number" },
