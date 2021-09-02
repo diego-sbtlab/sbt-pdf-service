@@ -69,8 +69,8 @@ export default {
         classification: { type: "string" },
         category: { type: "string" },
         exhibition: { type: "array", items: {type: "string"}},
-        impact: { type: "integer" },
-        totalImpact: { type: "integer" },
+        impact: { type: "number" },
+        totalImpact: { type: "number" },
         total: { type: "number" },
         formats: { type: "array", items: {
           type: "object",
