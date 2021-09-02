@@ -16,8 +16,8 @@ import Html from "../../templates/Html";
 
 const wkhtmltopdf = require('wkhtmltopdf');
 
-const renderReport = (accountability) => {
-  return (<PlanDetail accountability={accountability} />)
+const renderReport = campaign => {
+  return (<PlanDetail campaign={campaign} />)
 }
 
 const render = async (html, memStream) => {
@@ -38,8 +38,6 @@ const render = async (html, memStream) => {
 
 const planDetail: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
   const { body } = event;
-  console.log('AQUI', body);
-  const accountability = body;
 
   // Estas duas configurações abaixo faz o lambda enxergar a path dos binários
   // Sempre inserir na funcao e de forma global
@@ -50,7 +48,7 @@ const planDetail: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
 
   const sheet = new ServerStyleSheet();
 
-  const bodyRes = renderToString(sheet.collectStyles(renderReport(accountability)));
+  const bodyRes = renderToString(sheet.collectStyles(renderReport(body)));
 
   const styles = sheet.getStyleTags();
   const title = 'ADS - Plano detalhado';
