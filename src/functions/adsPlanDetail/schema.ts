@@ -1,9 +1,9 @@
 export default {
   type: "object",
   properties: {
-    name: { type: 'string' },
+    name: { type: "string" },
     agency: {
-      type: 'object',
+      type: ["object", "null"],
       properties: {
         cnpj: { type: "string" },
         companyName: { type: "string" }
@@ -69,6 +69,9 @@ export default {
         classification: { type: "string" },
         category: { type: "string" },
         exhibition: { type: "array", items: {type: "string"}},
+        impact: { type: "integer" },
+        totalImpact: { type: "integer" },
+        total: { type: "number" },
         formats: { type: "array", items: {
           type: "object",
           properties: {
@@ -96,8 +99,23 @@ export default {
         "classification",
         "category",
         "exhibition",
+        "impact",
+        "totalImpact",
+        "total",
         "formats"
       ]
     }}
   },
+  required: [
+    "name",
+    "agency",
+    "company",
+    "startDate",
+    "endDate",
+    "impact",
+    "investment",
+    "total",
+    "locations",
+    "products"
+  ]
 } as const;
