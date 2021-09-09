@@ -10,7 +10,7 @@ import {
     Title,
     Program
 } from "./components";
-const moment = require("moment");
+import moment from 'moment';
 
 // @ts-ignore
 const PlanDetail = ({ campaign }) => {
