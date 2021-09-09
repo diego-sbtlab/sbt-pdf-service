@@ -87,8 +87,8 @@ const PlanDetail = ({ campaign }) => {
                 <b>Impacto: </b>{parseInt(impact)}<br/>
                 <b>Investimento: </b>R$ {total.toFixed(2)}<br/>
                 <b>Período da Campanha: </b>{moment(startDate).format('DD/MM/YYYY')} até {moment(endDate).format('DD/MM/YYYY')}<br/>
-                <b>TV: </b>{cTV}<br/>
-                <b>Digital: </b>{cDigital}<br/>
+                <b>TV: </b>{cTV} inserções<br/>
+                <b>Digital: </b>{cDigital} mil views<br/>
             </p>
             <hr/>
             <Title>Produtos (TV)</Title>
