@@ -20,7 +20,8 @@ const PlanDetail = ({ campaign }) => {
         total,
         startDate,
         endDate,
-        products
+        products,
+        updatedAt
     } = campaign;
     
     const tv = [];
@@ -81,7 +82,7 @@ const PlanDetail = ({ campaign }) => {
                 <SbtLogoText>ADS</SbtLogoText>
             </Header>
             <b>Plano de veiculação de mídia programada</b><br/>
-            Data de geração: {moment().format('DD/MM/YYYY')}<br/>
+            Data de geração: {moment(updatedAt).format('DD/MM/YYYY')}<br/>
             <p>
                 <b>Nome da campanha: </b>{name}<br/>
                 <b>Impacto: </b>{parseInt(impact)}<br/>
