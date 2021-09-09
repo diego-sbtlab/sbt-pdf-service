@@ -8,7 +8,10 @@ import {
     Tr,
     Td,
     Title,
-    Program
+    Program,
+    TitleXL,
+    CampaignInfo,
+    Hr
 } from "./components";
 import moment from 'moment';
 
@@ -81,17 +84,17 @@ const PlanDetail = ({ campaign }) => {
                 </SbtLogoSpace>
                 <SbtLogoText>ADS</SbtLogoText>
             </Header>
-            <b>Plano de veiculação de mídia programada</b><br/>
-            Data de geração: {moment(updatedAt).format('DD/MM/YYYY')}<br/>
-            <p>
+            <TitleXL>Plano de veiculação de mídia programada</TitleXL>
+            Data de geração: {moment(updatedAt).format('DD/MM/YYYY')}
+            <CampaignInfo>
                 <b>Nome da campanha: </b>{name}<br/>
                 <b>Impacto: </b>{parseInt(impact)}<br/>
                 <b>Investimento: </b>R$ {total.toFixed(2)}<br/>
                 <b>Período da Campanha: </b>{moment(startDate).format('DD/MM/YYYY')} até {moment(endDate).format('DD/MM/YYYY')}<br/>
                 <b>TV: </b>{cTV} inserções<br/>
-                <b>Digital: </b>{cDigital} mil views<br/>
-            </p>
-            <hr/>
+                <b>Digital: </b>{cDigital}{ cDigital > 0 ? ` mil ` : ` `}views<br/>
+            </CampaignInfo>
+            <Hr/>
             <Title>Produtos (TV)</Title>
             {tv.map(p =>
                 <Program>

@@ -14,6 +14,15 @@ export const Title = styled.p`
   font-size: 20px;
   font-weight: bold;
 `;
+export const TitleXL = styled.p`
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0;
+`;
+export const CampaignInfo = styled.p`
+  font-size: 20px;
+`;
 export const Program = styled.div`
   width: '100%';
   page-break-inside: avoid;
@@ -29,15 +38,16 @@ export const SbtLogoSpace = styled.div`
   width: 90px;
 `;
 export const SbtLogoText = styled.span`
-  font-size: 2em;
-  font-weight: 600;
+  font-size: 2.5em;
+  font-weight: bold;
   color: white;
-  margin-top: 3%;
+  margin-top: 2%;
   float: left;
 `;
 export const Campaign = styled.div`
   color: #1c1c1d;
-  font-size: 13px;
-  width:920px;
-  height:1340px;
+  font-size: 18px;
+`;
+export const Hr = styled.hr`
+  border: 1px solid #bbb;
 `;
