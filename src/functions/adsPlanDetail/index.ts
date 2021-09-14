@@ -8,6 +8,7 @@ export default {
       http: {
         method: 'post',
         path: 'adsPlanDetail',
+        cors: true,
         request: {
           schema: {
             'application/json': schema
