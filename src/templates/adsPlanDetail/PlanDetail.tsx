@@ -32,6 +32,15 @@ const PlanDetail = ({ campaign }) => {
     let cTV = 0;
     let cDigital = 0;
 
+    const formatMoneyBR = (value=0) => {
+        const formatter = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+          minimumFractionDigits: 2
+        });
+        return formatter.format(value || 0);
+    }
+
     for (let product of products) {
         for (let format of product.formats) {
             if (format.amount > 0) {
@@ -89,7 +98,7 @@ const PlanDetail = ({ campaign }) => {
             <CampaignInfo>
                 <b>Nome da campanha: </b>{name}<br/>
                 <b>Impacto: </b>{parseInt(impact)}<br/>
-                <b>Investimento: </b>R$ {total.toFixed(2)}<br/>
+                <b>Investimento: </b>{formatMoneyBR(total)}<br/>
                 <b>Período da Campanha: </b>{moment(startDate).format('DD/MM/YYYY')} até {moment(endDate).format('DD/MM/YYYY')}<br/>
                 <b>TV: </b>{cTV} inserções<br/>
                 <b>Digital: </b>{cDigital}{ cDigital > 0 ? ` mil ` : ` `}views<br/>
@@ -110,8 +119,8 @@ const PlanDetail = ({ campaign }) => {
                             <Tr>
                                 <Td>{f.amount}</Td>
                                 <Td>{f.name}</Td>
-                                <Td>R$ {f.unitPrice.toFixed(2)}</Td>
-                                <Td>R$ {(f.unitPrice*f.amount).toFixed(2)}</Td>
+                                <Td>{ formatMoneyBR(f.unitPrice) }</Td>
+                                <Td>{ formatMoneyBR(f.unitPrice*f.amount) }</Td>
                             </Tr>
                         )}
                     </Table>
@@ -133,8 +142,8 @@ const PlanDetail = ({ campaign }) => {
                             <Tr>
                                 <Td>{f.name}</Td>
                                 <Td>{f.amount*1000}</Td>
-                                <Td>R$ {f.unitPrice.toFixed(2)}</Td>
-                                <Td>R$ {(f.unitPrice*f.amount).toFixed(2)}</Td>
+                                <Td>{formatMoneyBR(f.unitPrice)}</Td>
+                                <Td>{formatMoneyBR(f.unitPrice*f.amount)}</Td>
                             </Tr>
                         )}
                     </Table>
