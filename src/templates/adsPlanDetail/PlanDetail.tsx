@@ -18,13 +18,14 @@ import moment from 'moment';
 // @ts-ignore
 const PlanDetail = ({ campaign }) => {
     const {
+        id,
         name,
         impact,
         total,
         startDate,
         endDate,
         products,
-        updatedAt
+        date
     } = campaign;
     
     const tv = [];
@@ -94,14 +95,15 @@ const PlanDetail = ({ campaign }) => {
                 <SbtLogoText>ADS</SbtLogoText>
             </Header>
             <TitleXL>Plano de veiculação de mídia programada</TitleXL>
-            Data de geração: {moment(updatedAt).format('DD/MM/YYYY')}
+            Data de geração: {moment(date).format('DD/MM/YYYY HH:mm:ss')}
             <CampaignInfo>
+                <b>ID: </b>{id}<br/>
                 <b>Nome da campanha: </b>{name}<br/>
                 <b>Impacto: </b>{parseInt(impact)}<br/>
                 <b>Investimento: </b>{formatMoneyBR(total)}<br/>
                 <b>Período da Campanha: </b>{moment(startDate).format('DD/MM/YYYY')} até {moment(endDate).format('DD/MM/YYYY')}<br/>
                 <b>TV: </b>{cTV} inserções<br/>
-                <b>Digital: </b>{cDigital}{ cDigital > 0 ? ` mil ` : ` `}views<br/>
+                {digital.length > 0 && <div><b>Digital: </b>{cDigital} mil views<br/></div>}
             </CampaignInfo>
             <Hr/>
             <Title>Produtos (TV)</Title>
@@ -127,7 +129,7 @@ const PlanDetail = ({ campaign }) => {
                 </Program>
             )}
             <br/><br/>
-            <Title>Produtos (Internet)</Title>
+            {digital.length > 0 && <Title>Produtos (Internet)</Title>}
             {digital.map(p =>
                 <Program>
                     <p><b>{p.name}</b></p>
