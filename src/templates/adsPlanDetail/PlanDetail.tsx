@@ -21,7 +21,9 @@ const PlanDetail = ({ campaign }) => {
         id,
         name,
         impact,
-        total,
+        condecineCost,
+        videoCost,
+        liquidAmount,
         startDate,
         endDate,
         products,
@@ -100,7 +102,7 @@ const PlanDetail = ({ campaign }) => {
                 <b>ID: </b>{id}<br/>
                 <b>Nome da campanha: </b>{name}<br/>
                 <b>Impacto: </b>{parseInt(impact)}<br/>
-                <b>Investimento: </b>{formatMoneyBR(total)}<br/>
+                <b>Investimento: </b>{formatMoneyBR(condecineCost+videoCost+liquidAmount)}<br/>
                 <b>Período da Campanha: </b>{moment(startDate).format('DD/MM/YYYY')} até {moment(endDate).format('DD/MM/YYYY')}<br/>
                 <b>TV: </b>{cTV} inserções<br/>
                 {digital.length > 0 && <div><b>Digital: </b>{cDigital} mil views<br/></div>}
