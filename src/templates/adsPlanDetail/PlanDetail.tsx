@@ -29,17 +29,17 @@ const PlanDetail = ({ campaign }) => {
         products,
         date
     } = campaign;
-    
+
     const tv = [];
     const digital = [];
     let cTV = 0;
     let cDigital = 0;
 
-    const formatMoneyBR = (value=0) => {
+    const formatMoneyBR = (value = 0) => {
         const formatter = new Intl.NumberFormat("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-          minimumFractionDigits: 2
+            style: "currency",
+            currency: "BRL",
+            minimumFractionDigits: 2
         });
         return formatter.format(value || 0);
     }
@@ -48,7 +48,7 @@ const PlanDetail = ({ campaign }) => {
         for (let format of product.formats) {
             if (format.amount > 0) {
                 if (format.platform == 'tv') {
-                    cTV+=format.amount;
+                    cTV += format.amount;
 
                     let p = tv.find(p => p.id == product.id);
                     let i = -1;
@@ -59,14 +59,14 @@ const PlanDetail = ({ campaign }) => {
                             formats: []
                         };
                         tv.push(p);
-                        i = tv.length-1;
+                        i = tv.length - 1;
                     } else {
                         i = tv.indexOf(p);
                     }
 
                     tv[i].formats.push(format);
                 } else {
-                    cDigital+=format.amount;
+                    cDigital += format.amount;
 
                     let p = digital.find(p => p.id == product.id);
                     let i = -1;
@@ -77,7 +77,7 @@ const PlanDetail = ({ campaign }) => {
                             formats: []
                         };
                         digital.push(p);
-                        i = digital.length-1;
+                        i = digital.length - 1;
                     } else {
                         i = digital.indexOf(p);
                     }
@@ -92,22 +92,22 @@ const PlanDetail = ({ campaign }) => {
         <Campaign>
             <Header>
                 <SbtLogoSpace>
-                    <img src={"https://d2trnviq4pshz.cloudfront.net/logo-ads.png"} width={90} height={90}/>
+                    <img src={"https://d2trnviq4pshz.cloudfront.net/logo-ads.png"} width={90} height={90} />
                 </SbtLogoSpace>
                 <SbtLogoText>ADS</SbtLogoText>
             </Header>
             <TitleXL>Plano de veiculação de mídia programada</TitleXL>
             Data de geração: {moment(date).format('DD/MM/YYYY HH:mm:ss')}
             <CampaignInfo>
-                <b>ID: </b>{id}<br/>
-                <b>Nome da campanha: </b>{name}<br/>
-                <b>Impacto: </b>{parseInt(impact)}<br/>
-                <b>Investimento: </b>{formatMoneyBR(condecineCost+videoCost+liquidAmount)}<br/>
-                <b>Período da Campanha: </b>{moment(startDate).format('DD/MM/YYYY')} até {moment(endDate).format('DD/MM/YYYY')}<br/>
-                <b>TV: </b>{cTV} inserções<br/>
-                {digital.length > 0 && <div><b>Digital: </b>{cDigital} mil views<br/></div>}
+                <b>ID: </b>{id}<br />
+                <b>Nome da campanha: </b>{name}<br />
+                {parseInt(impact) > 0 && <div><b>Impacto: </b>{parseInt(impact)}<br /></div>}
+                <b>Investimento: </b>{formatMoneyBR(condecineCost + videoCost + liquidAmount)}<br />
+                <b>Período da Campanha: </b>{moment(startDate).format('DD/MM/YYYY')} até {moment(endDate).format('DD/MM/YYYY')}<br />
+                <b>TV: </b>{cTV} inserções<br />
+                {digital.length > 0 && <div><b>Digital: </b>{cDigital} mil views<br /></div>}
             </CampaignInfo>
-            <Hr/>
+            <Hr />
             <Title>Produtos (TV)</Title>
             {tv.map(p =>
                 <Program>
@@ -123,14 +123,14 @@ const PlanDetail = ({ campaign }) => {
                             <Tr>
                                 <Td>{f.amount}</Td>
                                 <Td>{f.name}</Td>
-                                <Td>{ formatMoneyBR(f.unitPrice) }</Td>
-                                <Td>{ formatMoneyBR(f.unitPrice*f.amount) }</Td>
+                                <Td>{formatMoneyBR(f.unitPrice)}</Td>
+                                <Td>{formatMoneyBR(f.unitPrice * f.amount)}</Td>
                             </Tr>
                         )}
                     </Table>
                 </Program>
             )}
-            <br/><br/>
+            <br /><br />
             {digital.length > 0 && <Title>Produtos (Internet)</Title>}
             {digital.map(p =>
                 <Program>
@@ -145,9 +145,9 @@ const PlanDetail = ({ campaign }) => {
                         {p.formats.map(f =>
                             <Tr>
                                 <Td>{f.name}</Td>
-                                <Td>{f.amount*1000}</Td>
+                                <Td>{f.amount * 1000}</Td>
                                 <Td>{formatMoneyBR(f.unitPrice)}</Td>
-                                <Td>{formatMoneyBR(f.unitPrice*f.amount)}</Td>
+                                <Td>{formatMoneyBR(f.unitPrice * f.amount)}</Td>
                             </Tr>
                         )}
                     </Table>
