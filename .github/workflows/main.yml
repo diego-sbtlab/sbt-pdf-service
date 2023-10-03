@@ -1,0 +1,58 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - "master"
+
+
+jobs:
+  createEnv:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Create .env and .npmrc files
+        run: |
+          echo "NODE_AUTH_TOKEN=rsfdf" > .env
+          echo "NEXT_PUBLIC_API_SSO_TOKEN=ghuiygh" >> .env
+
+          
+          echo "//npm.pkg.github.com/:_authToken=ertyuijuhg" >> .npmrc
+          echo "@sbt-lab:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "registry=https://registry.npmjs.org" >> .npmrc
+          cat .npmrc
+
+      - name: Validate presence of .env and .npmrc files
+        run: |
+          if [ ! -f .env ] || [ ! -f .npmrc ]; then
+            echo "ERROR: .env or .npmrc file is missing."
+            exit 1
+          fi
+
+      - name: Upload .env file as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: env-npmrc
+          path: |
+            .env
+            .npmrc
+
+  preBuild:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+      - name: Download .env and .npmrc artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: env-npmrc
+          path: .
+      - name: CATTTT
+        run: |
+          cat .env
+          cat .npmrc
+
